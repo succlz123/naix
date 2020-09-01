@@ -1,0 +1,12 @@
+rootProject.name = 'naix'
+include ':app'
+include ':app-test'
+
+include ':compiler-plugin'
+include ':compiler-runtime'
+
+includeBuild('gradle-plugin') {
+    dependencySubstitution {
+        substitute module('com.github.succlz123.naix:gradle-plugin') with project(':')
+    }
+}

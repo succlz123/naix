@@ -1,0 +1,51 @@
+buildscript {
+    ext.kotlin_version = '1.4.0'
+
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.0.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        // jitPack upload
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        // gradle-plugin
+        classpath "com.github.succlz123.naix:gradle-plugin:0.0.1"
+    }
+}
+
+System.setProperty("kotlin.compiler.execution.strategy", "in-process") // For debugging
+
+subprojects {
+    configurations.all {
+        resolutionStrategy {
+            dependencySubstitution {
+                substitute module('com.github.succlz123.naix:compiler-plugin') with project(':compiler-plugin')
+            }
+        }
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+tasks.register("install") {
+    description = "Runs all the install tasks on both top level and included build for JitPack."
+
+    dependsOn(gradle.includedBuild("gradle-plugin").task(":install"))
+    dependsOn(":compiler-plugin:install")
+    dependsOn(":compiler-runtime:install")
+}
