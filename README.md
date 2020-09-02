@@ -7,23 +7,23 @@ A Kotlin Compiler Plugin (Not Gradle Transform Plugin) that helps **Android-Kotl
 [![](https://jitpack.io/v/succlz123/naix.svg)](https://jitpack.io/#succlz123/naix)
 
 ~~~
-repositories {
-    maven { url 'https://jitpack.io' }
-}
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
 ~~~
 
 ~~~
-dependencies {
-    classpath "com.github.succlz123.naix:gradle-plugin:x.y.z"
-}
+    dependencies {
+        classpath "com.github.succlz123.naix:gradle-plugin:x.y.z"
+    }
 ~~~
 
 ~~~
-apply plugin: 'com.github.succlz123.naix'
+    apply plugin: 'com.github.succlz123.naix'
 ~~~
 
 ~~~
-implementation "com.github.succlz123.naix:compiler-runtime:x.y.z"
+    implementation "com.github.succlz123.naix:compiler-runtime:x.y.z"
 ~~~
 
 ### Option
@@ -31,15 +31,15 @@ implementation "com.github.succlz123.naix:compiler-runtime:x.y.z"
 #### Disable Naix
 
 ~~~
-naix {
-    enable = false
-}
+    naix {
+        enable = false
+    }
 ~~~
 
 #### Custom Logger
 
 ~~~ kotlin
-NaixOption.set { className, methodName, msg -> Log.i("Naix ", msg) }
+    NaixOption.set { className, methodName, msg -> Log.i("Naix ", msg) }
 ~~~
 
 ### Sample
@@ -73,17 +73,17 @@ NaixOption.set { className, methodName, msg -> Log.i("Naix ", msg) }
 ~~~
 ↓
 ~~~
-╔═════════════════════════════════════════════════════════════════════════════════════╗
-║ Class#Method -> org/succlz123/naix/app/MainActivity#func2                           ║
-║ Parameters -> a = 321 b = tset c = 2.1                                              ║
-║ 1 -> 1 ms, kotlin/jvm/internal/Intrinsics#areEqual                                  ║
-║ 2 -> 0 ms, java/util/ArrayList#<init>                                               ║
-║ 3 -> 0 ms, org/succlz123/naix/app/MainActivity#funcTest                             ║         
-║ 4 -> 0 ms, java/util/ArrayList#<init>                                               ║
-║ 5 -> 0 ms, java/util/ArrayList#add                                                  ║
-║ Return value -> ccc                                                                 ║
-║ Elapsed time -> 1 ms                                                                ║         
-╚═════════════════════════════════════════════════════════════════════════════════════╝
+╔══════════════════════════════════════════════════════════════════════════════╗
+║ Class#Method -> org/succlz123/naix/app/MainActivity#func2                    ║
+║ Parameters -> a = 321 b = tset c = 2.1                                       ║
+║ 1 -> 1 ms, kotlin/jvm/internal/Intrinsics#areEqual                           ║
+║ 2 -> 0 ms, java/util/ArrayList#<init>                                        ║
+║ 3 -> 0 ms, org/succlz123/naix/app/MainActivity#funcTest                      ║         
+║ 4 -> 0 ms, java/util/ArrayList#<init>                                        ║
+║ 5 -> 0 ms, java/util/ArrayList#add                                           ║
+║ Return value -> test2                                                        ║
+║ Elapsed time -> 1 ms                                                         ║         
+╚══════════════════════════════════════════════════════════════════════════════╝
 ~~~
 
 ### Thanks
